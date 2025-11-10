@@ -1,0 +1,165 @@
+/* Navbar */
+.navbar {
+  background-color: #000000;
+  padding: 20px 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  width: 80px;
+}
+
+.navbar-hamburger {
+  width: 45px;
+  height: 45px;
+  background-color: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 10px;
+  position: relative;
+}
+
+.navbar-hamburger:hover {
+  background-color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.navbar-hamburger.open {
+  background-color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.navbar-hamburger.open:hover {
+  background-color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+.navbar-user {
+  display: none;
+}
+
+.navbar-login-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-login-button {
+  width: 45px;
+  height: 45px;
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.navbar-login-button:hover {
+  background-color: var(--netfilm-gray);
+  border-color: var(--netfilm-red);
+}
+
+.navbar-login-button img {
+  filter: brightness(0) invert(1);
+}
+
+.navbar-login-tooltip {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar-login-button:hover .navbar-login-tooltip {
+  opacity: 1;
+}
+
+/* Hamburger Line (usato nella navbar) */
+.hamburger-line {
+  width: 24px;
+  height: 3px;
+  background-color: var(--netfilm-white);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  position: absolute;
+}
+
+.navbar-hamburger .hamburger-line:nth-child(1) {
+  transform: translateY(-3px);
+}
+
+.navbar-hamburger .hamburger-line:nth-child(2) {
+  transform: translateY(3px);
+}
+
+/* Animazione per formare la X quando la sidebar è aperta */
+.navbar-hamburger.open .hamburger-line:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+
+.navbar-hamburger.open .hamburger-line:nth-child(2) {
+  transform: translateY(0) rotate(-45deg);
+}
+
+/* Logo al centro della navbar */
+.navbar-logo-container {
+  position: absolute;
+  left: 62%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(270deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logo-container .animated-logo {
+  transform: scale(2.5);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 70px;
+    padding: 15px 10px;
+  }
+
+  .navbar-hamburger {
+    width: 40px;
+    height: 40px;
+  }
+}
+

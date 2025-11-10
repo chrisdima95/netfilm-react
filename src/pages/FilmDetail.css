@@ -1,0 +1,383 @@
+.film-detail-container {
+  padding: 0;
+  height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  margin-left: 80px;
+  width: calc(100% - 80px);
+  position: relative; 
+  overflow: hidden; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex; 
+  flex-direction: column; 
+}
+
+.film-detail-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.6) 40%, #000000 100%);
+  z-index: 1; 
+}
+
+.film-back-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  left: auto;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-back-arrow {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+
+.film-back-arrow::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-left: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  border-radius: 0 0 0 2px;
+  left: 55%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.film-back-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.film-detail-scroll-content {
+  position: relative;
+  z-index: 2; 
+  padding: 40px;
+  padding-top: 60vh; 
+  flex: 1; 
+  overflow-y: auto; 
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.film-detail-info {
+  margin-bottom: 40px; 
+}
+
+.film-detail-title {
+  font-size: 48px;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+.film-detail-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start; 
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.film-detail-meta-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.film-detail-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px; 
+  margin-bottom: 24px;
+}
+
+.film-rating-star {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: none;
+  color: rgba(227, 178, 60, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.film-rating-star:hover {
+  transform: translateY(-2px);
+  color: rgba(227, 178, 60, 0.85);
+}
+
+.film-rating-star.active {
+  color: #f1ba2c;
+}
+
+.film-rating-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.film-status {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.film-status.completed {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.film-status.in-progress {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+.film-id {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+
+.film-detail-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+.film-review-section {
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 24px;
+}
+
+.film-review-title {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+/* Lista delle recensioni */
+.film-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.film-review-empty {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Singolo item recensione */
+.film-review-item {
+  background: rgba(0, 0, 0, 0.538);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #f1ba2c;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.film-review-item-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+  margin: 0;
+  white-space: pre-wrap; 
+  flex: 1; 
+}
+
+/* Pulsanti Modifica/Elimina */
+.film-review-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0; 
+}
+
+.film-review-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.film-review-action-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.film-review-action-btn.edit {
+  color: #f1ba2c;
+}
+.film-review-action-btn.edit:hover:not(:disabled) {
+  background: rgba(241, 186, 44, 0.1);
+}
+
+.film-review-action-btn.delete {
+  color: #e94f37;
+}
+.film-review-action-btn.delete:hover {
+  background: rgba(233, 79, 55, 0.1);
+}
+
+
+/* Form */
+.film-review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px; 
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.film-review-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.film-review-input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  color: #ffffff;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.2s ease;
+}
+
+.film-review-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.film-review-input:focus {
+  outline: none;
+  border-color: #f1ba2c;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(241, 186, 44, 0.3);
+}
+
+.film-review-form-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.film-review-submit {
+  padding: 12px 24px;
+  background-color: #f1ba2c;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.film-review-submit:hover {
+  background-color: #e0ac28;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(241, 186, 44, 0.2);
+}
+
+/* Pulsante Annulla */
+.film-review-cancel {
+  padding: 12px 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.film-review-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+@media (max-width: 768px) {
+  .film-detail-container {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+
+  .film-detail-scroll-content {
+    padding: 20px;
+    /* Riduci un po' lo spazio sui cellulari, 
+       ma mantienilo più grande di prima */
+    padding-top: 40vh; 
+  }
+
+  .film-detail-title {
+    font-size: 36px;
+  }
+
+  .film-detail-description {
+    font-size: 16px;
+  }
+
+  .film-review-title {
+    font-size: 24px;
+  }
+  
+  .film-review-item {
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+  
+  .film-review-actions {
+    margin-top: 8px;
+    width: 100%;
+    justify-content: flex-end; 
+  }
+}

@@ -1,0 +1,154 @@
+/* Reset CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Root Variables */
+:root {
+  --netfilm-red: #e3b23c;
+  --netfilm-red-hover: #f0c050;
+  --netfilm-black: #141414;
+  --netfilm-dark: #1a1a1a;
+  --netfilm-gray: #2f2f2f;
+  --netfilm-gray-light: #808080;
+  --netfilm-white: #ffffff;
+  color-scheme: dark;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--netfilm-black);
+  color: var(--netfilm-white);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background-color: var(--netfilm-red);
+  color: var(--netfilm-white);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--netfilm-red-hover);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input {
+  font-family: inherit;
+  outline: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--netfilm-gray);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--netfilm-white);
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: var(--netfilm-white);
+}
+
+input::placeholder {
+  color: var(--netfilm-gray-light);
+}
+
+/* Links */
+a {
+  color: var(--netfilm-red);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--netfilm-red-hover);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: var(--netfilm-dark);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.muted {
+  opacity: 0.7;
+  font-size: 14px;
+  color: var(--netfilm-gray-light);
+}
+
+.error {
+  color: var(--netfilm-red);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.success-message {
+  color: #4caf50;
+  font-size: 14px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Logo */
+.netfilm-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animated-logo {
+  display: inline-block;
+}
+
+/* Loading state */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--netfilm-gray-light);
+  font-size: 18px;
+}

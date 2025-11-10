@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mock Data Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+      textarea { width: 100%; height: 50vh; }
+      .row { display: flex; gap: 8px; align-items: center; margin: 12px 0; }
+      button { cursor: pointer; padding: 8px 12px; }
+      small { opacity: .7; }
+      pre { background: #f6f8fa; padding: 12px; overflow: auto; }
+      label { font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <h1>Mock Data Editor</h1>
+    <p>Qui puoi definire i dati che l’app userà quando è in modalità <strong>mock</strong>.</p>
+
+    <div class="row">
+      <label>Abilita mock:</label>
+      <button id="enable">ON</button>
+      <button id="disable">OFF</button>
+      <small id="status"></small>
+    </div>
+
+    <p><strong>Endpoint simulati</strong> (puoi lasciare solo quelli che ti servono):</p>
+    <pre>{
+  "GET /posts": [ { "id": 1, "title": "Post mock", "body": "Ciao!", "userId": 1 } ],
+  "GET /todos": [ { "id": 1, "title": "Todo mock", "completed": false, "userId": 1 } ],
+  "POST /posts": "echo",  // "echo" = restituisce quello che invii, con id finto
+  "PUT /posts/:id": "merge",
+  "PATCH /posts/:id": "merge",
+  "DELETE /posts/:id": "ok"
+}</pre>
+
+    <textarea id="json"></textarea>
+    <div class="row">
+      <button id="save">Salva mock</button>
+      <button id="load">Carica mock salvato</button>
+      <button id="reset">Reset</button>
+    </div>
+
+    <script>
+      const KEY = "__MOCK_DATA__";
+      const ENABLE_KEY = "__MOCK_ENABLED__";
+
+      const $ = (id) => document.getElementById(id);
+      const statusEl = $("status");
+
+      function renderStatus() {
+        const on = localStorage.getItem(ENABLE_KEY) === "1";
+        statusEl.textContent = on ? "Mock attivo" : "Mock disattivo";
+      }
+
+      $("enable").onclick = () => { localStorage.setItem(ENABLE_KEY, "1"); renderStatus(); };
+      $("disable").onclick = () => { localStorage.removeItem(ENABLE_KEY); renderStatus(); };
+
+      $("save").onclick = () => {
+        try {
+          const obj = JSON.parse($("json").value || "{}");
+          localStorage.setItem(KEY, JSON.stringify(obj));
+          alert("Mock salvato!");
+        } catch (e) {
+          alert("JSON non valido: " + e.message);
+        }
+      };
+
+      $("load").onclick = () => {
+        $("json").value = localStorage.getItem(KEY) || "{}";
+      };
+
+      $("reset").onclick = () => {
+        localStorage.removeItem(KEY);
+        localStorage.removeItem(ENABLE_KEY);
+        $("json").value = "{}";
+        renderStatus();
+      };
+
+      // init
+      $("json").value = localStorage.getItem(KEY) || `{
+  "GET /posts": [ { "id": 1, "title": "Post mock", "body": "Ciao!", "userId": 1 } ],
+  "GET /todos": [ { "id": 1, "title": "Todo mock", "completed": false, "userId": 1 } ],
+  "POST /posts": "echo",
+  "PUT /posts/:id": "merge",
+  "PATCH /posts/:id": "merge",
+  "DELETE /posts/:id": "ok"
+}`;
+      renderStatus();
+    </script>
+  </body>
+</html>

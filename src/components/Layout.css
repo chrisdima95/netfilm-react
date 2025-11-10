@@ -1,0 +1,43 @@
+/* Layout App */
+.app-layout {
+  min-height: 100vh;
+  background-color: var(--netfilm-black);
+}
+
+.app-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  background-color: #000000;
+}
+
+.page-container {
+  min-height: calc(100vh - 80px);
+}
+
+.page-title {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--netfilm-white);
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 28px;
+    padding: 0 16px;
+  }
+}
+
